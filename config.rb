@@ -2,11 +2,12 @@
 activate :i18n, :mount_at_root => :en
 activate :livereload
 activate :directory_indexes
+
+set :trailing_slash, true
 set :markdown_engine, :kramdown
 set :markdown, :layout_engine => :slim,
   tables: true,
   coderay_line_numbers: nil
-set :trailing_slash, true
 
 ## site specific stuff
 set :site_title, 'REVS Data'
@@ -29,6 +30,16 @@ set :css_dir, 'assets/stylesheets'
 set :js_dir, 'assets/javascripts'
 set :images_dir, 'assets/images'
 set :files_dir, 'assets/files'
+
+activate :blog do |blog|
+  blog.name = "blog"
+  blog.prefix = "blog"
+  blog.permalink = "{title}"
+  blog.layout = "blog"
+  blog.publish_future_dated = true
+  blog.summary_separator = /SPLIT_SUMMARY_BEFORE_THIS/
+end
+
 
 
 # Build-specific configuration
