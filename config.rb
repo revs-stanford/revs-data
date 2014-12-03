@@ -61,13 +61,5 @@ ready do
   @bower_config = JSON.parse(IO.read("#{root}/.bowerrc"))
   sprockets.append_path File.join "#{root}", @bower_config["directory"]
 
-  data.tools.each_pair do |name, toolset|
-    toolset.tools.each do |t|
-      tool = Hashie::Mash.new(t)
-      proxy "/tools/#{tool.name}.html", "/templates/tool.html",
-        :locals => { :tool => tool }
-    end
-  end
-
 
 end
